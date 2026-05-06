@@ -1813,14 +1813,27 @@ blockquote {
     margin: 0 0 22px;
   }
   .hero-ctas {
+    position: absolute;
+    top: calc(clamp(280px, 48vh, 380px) - 108px);
+    left: var(--gutter);
+    z-index: 5;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 0;
+    gap: 8px;
+    margin: 0;
+    width: auto;
   }
   .hero-ctas .btn {
-    width: 100%;
+    width: auto;
     flex: 0 0 auto;
-    white-space: normal;
+    padding: 9px 22px;
+    font-size: 0.82rem;
+    min-width: 140px;
+    white-space: nowrap;
+  }
+  .hero-copy .btn-ghost {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
   }
   .intro,
   .problem {
@@ -1891,6 +1904,7 @@ blockquote {
 
   .hero-bg { height: clamp(260px, 44vh, 340px); }
   .hero-bg-img { object-position: 62% center; }
+  .hero-ctas { top: calc(clamp(260px, 44vh, 340px) - 108px); }
   .hero-copy h1 {
     font-size: clamp(1.5rem, 6.8vw, 1.95rem);
   }
@@ -1982,6 +1996,7 @@ blockquote {
   .brand-name { display: none; }
   .hero-bg { height: 240px; }
   .hero-bg-img { object-position: 65% center; }
+  .hero-ctas { top: 132px; }
   .hero-copy h1 { font-size: 1.6rem; }
   .intro-meta { grid-template-columns: 1fr; gap: 14px; }
   .intro-ingredients { grid-template-columns: repeat(2, 1fr); }
