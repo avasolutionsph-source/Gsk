@@ -1057,6 +1057,7 @@ blockquote {
 .steps li p { margin: 0; color: var(--ink-500); font-size: 0.95rem; }
 
 /* ---------- Admin / Login Page ---------- */
+[hidden] { display: none !important; }
 .page-admin {
   min-height: 100vh;
   display: flex;
