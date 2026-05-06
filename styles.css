@@ -1704,10 +1704,12 @@ blockquote {
     display: inline-flex;
     position: relative;
     z-index: 60;
+    order: 1;
   }
   .brand {
     position: relative;
     z-index: 60;
+    order: 2;
   }
   .nav-cta { display: none; }
   .nav-links {
@@ -1822,6 +1824,8 @@ blockquote {
     grid-template-columns: 1fr;
     gap: 32px;
   }
+  .intro-grid .intro-copy { order: 1; }
+  .intro-grid .intro-visual { order: 2; }
   .problem-copy { text-align: center; }
   .problem-copy .problem-heading { padding-bottom: 16px; }
   .problem-copy .problem-heading::after { left: 50%; transform: translateX(-50%); }
