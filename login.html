@@ -50,28 +50,78 @@
         <div class="admin-head">
           <div>
             <span class="eyebrow">Orders Dashboard</span>
-            <h1>GSK Dragon Fruit Plus Orders</h1>
-            <p class="admin-sub">Lahat ng order na sinubmit sa order form, naka-store sa local storage ng browser na ito.</p>
+            <h1>Welcome back, Admin 👋</h1>
+            <p class="admin-sub">Manage at i-track ang lahat ng orders ng GSK Dragon Fruit Plus dito.</p>
           </div>
           <div class="admin-actions">
             <button id="refreshBtn" type="button" class="btn btn-ghost btn-sm">↻ Refresh</button>
-            <button id="exportBtn" type="button" class="btn btn-outline btn-sm">Export CSV</button>
+            <button id="exportBtn" type="button" class="btn btn-outline btn-sm">⬇ Export CSV</button>
             <button id="logoutBtn" type="button" class="btn btn-ghost btn-sm">Logout</button>
           </div>
         </div>
 
         <div class="admin-stats">
-          <div class="admin-stat">
-            <span class="admin-stat-label">Total Orders</span>
-            <span class="admin-stat-value" id="statTotal">0</span>
+          <div class="admin-stat stat-total">
+            <div class="admin-stat-icon">📋</div>
+            <div class="admin-stat-body">
+              <span class="admin-stat-label">Total Orders</span>
+              <span class="admin-stat-value" id="statTotal">0</span>
+            </div>
           </div>
-          <div class="admin-stat">
-            <span class="admin-stat-label">Estimated Revenue</span>
-            <span class="admin-stat-value" id="statRevenue">₱0</span>
+          <div class="admin-stat stat-pending">
+            <div class="admin-stat-icon">⏳</div>
+            <div class="admin-stat-body">
+              <span class="admin-stat-label">Pending</span>
+              <span class="admin-stat-value" id="statPending">0</span>
+            </div>
           </div>
-          <div class="admin-stat">
-            <span class="admin-stat-label">Latest Order</span>
-            <span class="admin-stat-value" id="statLatest">—</span>
+          <div class="admin-stat stat-shipped">
+            <div class="admin-stat-icon">📦</div>
+            <div class="admin-stat-body">
+              <span class="admin-stat-label">Confirmed / Shipped</span>
+              <span class="admin-stat-value" id="statShipped">0</span>
+            </div>
+          </div>
+          <div class="admin-stat stat-revenue">
+            <div class="admin-stat-icon">💰</div>
+            <div class="admin-stat-body">
+              <span class="admin-stat-label">Estimated Revenue</span>
+              <span class="admin-stat-value" id="statRevenue">₱0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-toolbar">
+          <div class="admin-search">
+            <span class="admin-search-icon" aria-hidden="true">🔍</span>
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="Search by name, contact, or address…"
+              autocomplete="off"
+            />
+          </div>
+          <div class="admin-filters">
+            <select id="filterStatus" aria-label="Filter by status">
+              <option value="">All Status</option>
+              <option value="Pending">Pending</option>
+              <option value="Confirmed">Confirmed</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+            <select id="filterPayment" aria-label="Filter by payment method">
+              <option value="">All Payment</option>
+              <option value="COD">COD</option>
+              <option value="GCash">GCash</option>
+              <option value="Credit Card">Credit Card</option>
+            </select>
+            <select id="filterBundle" aria-label="Filter by bundle">
+              <option value="">All Bundles</option>
+              <option value="1 Box - ₱1,300">1 Box</option>
+              <option value="2 Boxes - ₱2,400">2 Boxes</option>
+              <option value="3 Boxes - ₱3,300">3 Boxes</option>
+            </select>
           </div>
         </div>
 
@@ -80,24 +130,26 @@
             <thead>
               <tr>
                 <th>Date</th>
-                <th>Name</th>
-                <th>Contact</th>
+                <th>Customer</th>
                 <th>Bundle</th>
                 <th>Payment</th>
                 <th>Address</th>
+                <th>Status</th>
                 <th></th>
               </tr>
             </thead>
             <tbody id="ordersBody"></tbody>
           </table>
           <div id="ordersEmpty" class="admin-empty" hidden>
-            <p>Wala pang orders na nai-save sa browser na ito.</p>
+            <div class="admin-empty-icon">📭</div>
+            <h3>Wala pang orders</h3>
+            <p>Walang nai-save na orders sa browser na ito, o walang tugma sa filters mo.</p>
             <a href="order.html" class="btn btn-outline btn-sm">Go to Order Page</a>
           </div>
         </div>
 
         <p class="admin-note">
-          <strong>Note:</strong> Orders are stored locally in this browser only. For multi-device order tracking,
+          <strong>Note:</strong> Orders are stored locally sa browser na ito. For multi-device tracking,
           connect the form to Netlify Forms, Supabase, or another backend service.
         </p>
       </div>
