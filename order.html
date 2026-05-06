@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Order GSK Dragon Fruit Plus — affordable herbal wellness support. COD, GCash, and Credit Card accepted." />
+  <meta name="theme-color" content="#6e1828" />
+  <title>Order GSK Dragon Fruit Plus</title>
+  <link rel="icon" type="image/jpeg" href="Assets/gsk%20logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-order">
+  <!-- Sticky Header -->
+  <header class="site-header is-solid">
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">
+          <img src="Assets/gsk%20logo.jpg" alt="St. Vincent GSK" />
+        </span>
+        <span class="brand-name">GSK <strong>Dragon Fruit Plus</strong></span>
+      </a>
+      <nav class="nav-links" aria-label="Primary" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="index.html#pricing">Pricing</a>
+      </nav>
+      <a href="index.html" class="btn btn-outline btn-sm nav-cta">← Back to Home</a>
+      <button
+        type="button"
+        class="nav-toggle"
+        id="navToggle"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Order Form Section -->
+    <section class="final-cta order-page">
+      <div class="container final-grid">
+        <div class="final-copy">
+          <span class="eyebrow">Order Today</span>
+          <h2>Start Your Daily Herbal Wellness Routine Today</h2>
+          <p class="lede">
+            Perfect for adults who want affordable herbal support for everyday
+            health maintenance.
+          </p>
+          <ul class="final-bullets">
+            <li>✓ COD, GCash, and Credit Card accepted</li>
+            <li>✓ Affordable bundles — save up to ₱600</li>
+            <li>✓ Easy ordering, fast confirmation</li>
+            <li>✓ Familiar herbal ingredients</li>
+          </ul>
+          <p class="campaign-note">📅 Campaign Period: May 11 – June 9, 2026</p>
+        </div>
+
+        <form class="order-form" id="orderForm" novalidate>
+          <h3>Order GSK Dragon Fruit Plus Now</h3>
+          <p class="form-sub">Fill out the form below and we'll confirm your order shortly.</p>
+
+          <div class="form-row">
+            <label for="fullName">Full Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="fullName" name="fullName" required autocomplete="name" placeholder="Juan Dela Cruz" />
+          </div>
+
+          <div class="form-row">
+            <label for="contact">Contact Number <span aria-hidden="true">*</span></label>
+            <input type="tel" id="contact" name="contact" required autocomplete="tel" inputmode="tel" placeholder="09xx xxx xxxx" pattern="[0-9+\-\s]{7,}" />
+          </div>
+
+          <div class="form-row">
+            <label for="address">Complete Address <span aria-hidden="true">*</span></label>
+            <textarea id="address" name="address" rows="3" required autocomplete="street-address" placeholder="House #, Street, Barangay, City, Province, ZIP"></textarea>
+          </div>
+
+          <div class="form-row">
+            <label for="bundle">Selected Bundle <span aria-hidden="true">*</span></label>
+            <select id="bundle" name="bundle" required>
+              <option value="">Pumili ng bundle…</option>
+              <option value="1 Box - ₱1,300">1 Box — ₱1,300</option>
+              <option value="2 Boxes - ₱2,400">2 Boxes — ₱2,400 (Save ₱200)</option>
+              <option value="3 Boxes - ₱3,300" selected>3 Boxes — ₱3,300 (Save ₱600 — Best Value)</option>
+            </select>
+          </div>
+
+          <fieldset class="form-row payment-row">
+            <legend>Payment Method <span aria-hidden="true">*</span></legend>
+            <div class="payment-options">
+              <label class="pay-opt">
+                <input type="radio" name="payment" value="COD" required checked />
+                <span class="pay-card">
+                  <strong>COD</strong>
+                  <small>Cash on Delivery</small>
+                </span>
+              </label>
+              <label class="pay-opt">
+                <input type="radio" name="payment" value="GCash" required />
+                <span class="pay-card">
+                  <strong>GCash</strong>
+                  <small>e-Wallet</small>
+                </span>
+              </label>
+              <label class="pay-opt">
+                <input type="radio" name="payment" value="Credit Card" required />
+                <span class="pay-card">
+                  <strong>Credit Card</strong>
+                  <small>Visa / Mastercard</small>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Order GSK Dragon Fruit Plus Now</button>
+          <p class="form-disclaimer">By placing your order, kasama ka sa wellness journey ng marami pang Pilipino.</p>
+
+          <div class="form-success" id="formSuccess" hidden>
+            <div class="success-icon">✓</div>
+            <h4>Salamat sa iyong order!</h4>
+            <p>We've received your details. Hihintayin mo na lang ang confirmation message namin sa contact number na binigay mo.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer / Disclaimer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <span class="brand-mark">
+              <img src="Assets/gsk%20logo.jpg" alt="St. Vincent GSK" />
+            </span>
+            <span class="brand-name">GSK <strong>Dragonfruit Plus</strong></span>
+          </a>
+          <p>Affordable herbal wellness support para sa adults na gustong mas maalagaan ang katawan araw-araw.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="footer-payments">
+          <h4>Payment Methods</h4>
+          <ul class="pay-list">
+            <li>COD</li>
+            <li>GCash</li>
+            <li>Credit Card</li>
+          </ul>
+          <p class="campaign-note">Campaign: May 11 – June 9, 2026</p>
+        </div>
+      </div>
+
+      <div class="no-claims-strip">No Approved Therapeutic Claims</div>
+
+      <div class="disclaimer">
+        <p><strong>Food supplement only. Not intended to diagnose, treat, cure, or prevent any disease.</strong></p>
+        <p>This product should not replace professional medical advice. Consult a healthcare professional before use, especially if pregnant, nursing, taking medication, or with existing medical conditions.</p>
+      </div>
+
+      <div class="copyright">
+        <p>&copy; 2026 GSK Dragon Fruit Plus. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
