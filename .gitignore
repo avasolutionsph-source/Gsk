@@ -5,8 +5,8 @@ node_modules/
 .vscode/
 .idea/
 
-# Large video assets — exceed GitHub 100MB limit.
-# Upload these manually via Netlify dashboard or use a CDN/YouTube/Vimeo.
-Assets/Video/*.mp4
+# Original large video sources — keep web-compressed copies tracked.
+Assets/Video/Gsk.mp4
+Assets/Video/copy_*.mov
 Assets/Video/*.mov
-Assets/Video/*.webm
+*-original.*
