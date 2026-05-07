@@ -4,3 +4,9 @@ Thumbs.db
 node_modules/
 .vscode/
 .idea/
+
+# Large video assets — exceed GitHub 100MB limit.
+# Upload these manually via Netlify dashboard or use a CDN/YouTube/Vimeo.
+Assets/Video/*.mp4
+Assets/Video/*.mov
+Assets/Video/*.webm
