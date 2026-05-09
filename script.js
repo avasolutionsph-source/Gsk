@@ -88,6 +88,7 @@
   // ---------- Header solid state on scroll ----------
   const header = document.querySelector(".site-header");
   const hero = document.querySelector(".hero");
+  const marqueeTop = document.querySelector(".marquee-top");
   if (header) {
     const updateHeaderState = () => {
       const isMobile = window.innerWidth <= 980;
@@ -100,6 +101,12 @@
         past = window.scrollY > 40;
       }
       header.classList.toggle("is-solid", past);
+
+      if (marqueeTop) {
+        const h = marqueeTop.offsetHeight;
+        const offset = Math.max(0, h - window.scrollY);
+        document.documentElement.style.setProperty("--header-top", offset + "px");
+      }
     };
     window.addEventListener("scroll", updateHeaderState, { passive: true });
     window.addEventListener("resize", updateHeaderState, { passive: true });
@@ -128,6 +135,99 @@
     window.addEventListener("resize", () => {
       if (window.innerWidth > 980) closeNav();
     });
+  }
+
+  // ---------- Reviews "see more" toggle ----------
+  const reviewsGrid = document.getElementById("reviewsGrid");
+  const reviewsToggle = document.getElementById("reviewsToggle");
+  if (reviewsGrid && reviewsToggle) {
+    const cards = Array.from(reviewsGrid.querySelectorAll(".review-card"));
+    const visible = parseInt(reviewsGrid.dataset.visible, 10) || 6;
+    const toggleText = reviewsToggle.querySelector(".reviews-toggle-text");
+    const hiddenCount = Math.max(0, cards.length - visible);
+
+    if (hiddenCount === 0) {
+      reviewsToggle.style.display = "none";
+    } else {
+      cards.forEach((card, i) => {
+        if (i >= visible) card.classList.add("is-hidden");
+      });
+      if (toggleText) toggleText.textContent = `See more reviews (${hiddenCount})`;
+
+      reviewsToggle.addEventListener("click", () => {
+        const expanded = reviewsGrid.classList.toggle("is-expanded");
+        reviewsToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+        if (toggleText) {
+          toggleText.textContent = expanded ? "Show less" : `See more reviews (${hiddenCount})`;
+        }
+        if (!expanded) {
+          // Scroll back to the reviews heading so the user isn't stranded down-page.
+          const reviewsSection = reviewsGrid.closest(".reviews");
+          if (reviewsSection) reviewsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    }
+  }
+
+  // ---------- Featured videos carousel ----------
+  const carousel = document.getElementById("videoCarousel");
+  if (carousel) {
+    const cards = Array.from(carousel.querySelectorAll(".video-card"));
+    const dots = Array.from(carousel.querySelectorAll(".vc-dot"));
+    const prevBtn = carousel.querySelector(".vc-prev");
+    const nextBtn = carousel.querySelector(".vc-next");
+    let active = 0;
+
+    const render = () => {
+      const total = cards.length;
+      cards.forEach((card, i) => {
+        card.classList.remove("is-active", "is-prev", "is-next");
+        const video = card.querySelector("video");
+        if (i === active) {
+          card.classList.add("is-active");
+        } else if (i === (active - 1 + total) % total) {
+          card.classList.add("is-prev");
+          if (video && !video.paused) video.pause();
+        } else if (i === (active + 1) % total) {
+          card.classList.add("is-next");
+          if (video && !video.paused) video.pause();
+        } else if (video && !video.paused) {
+          video.pause();
+        }
+      });
+      dots.forEach((dot, i) => dot.classList.toggle("is-active", i === active));
+    };
+
+    const go = (i) => {
+      const total = cards.length;
+      active = ((i % total) + total) % total;
+      render();
+    };
+
+    prevBtn && prevBtn.addEventListener("click", () => go(active - 1));
+    nextBtn && nextBtn.addEventListener("click", () => go(active + 1));
+    cards.forEach((card, i) => {
+      card.addEventListener("click", (e) => {
+        if (i === active) return;
+        if (e.target.closest("video")) return;
+        go(i);
+      });
+    });
+    dots.forEach((dot, i) => dot.addEventListener("click", () => go(i)));
+
+    // Touch swipe
+    let touchStartX = null;
+    carousel.addEventListener("touchstart", (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    carousel.addEventListener("touchend", (e) => {
+      if (touchStartX == null) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) go(dx < 0 ? active + 1 : active - 1);
+      touchStartX = null;
+    });
+
+    render();
   }
 
   // ---------- Reveal-on-scroll animations ----------

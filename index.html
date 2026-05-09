@@ -17,6 +17,18 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Top marquee strip (in flow — scrolls away with the page) -->
+  <div class="marquee marquee-top marquee-reverse" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">GSK DRAGON FRUIT <span class="marquee-dot">•</span> Your Daily Superfruit Wellness Support</span>
+      <span class="marquee-item">GSK DRAGON FRUIT <span class="marquee-dot">•</span> Your Daily Superfruit Wellness Support</span>
+      <span class="marquee-item">GSK DRAGON FRUIT <span class="marquee-dot">•</span> Your Daily Superfruit Wellness Support</span>
+      <span class="marquee-item">GSK DRAGON FRUIT <span class="marquee-dot">•</span> Your Daily Superfruit Wellness Support</span>
+      <span class="marquee-item">GSK DRAGON FRUIT <span class="marquee-dot">•</span> Your Daily Superfruit Wellness Support</span>
+      <span class="marquee-item">GSK DRAGON FRUIT <span class="marquee-dot">•</span> Your Daily Superfruit Wellness Support</span>
+    </div>
+  </div>
+
   <!-- Sticky Header -->
   <header class="site-header">
     <div class="container nav">
@@ -67,6 +79,18 @@
       </div>
     </div>
   </section>
+
+  <!-- Marquee strip -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">GSK DRAGON FRUIT <span class="marquee-dot">•</span> Your Daily Superfruit Wellness Support</span>
+      <span class="marquee-item">GSK DRAGON FRUIT <span class="marquee-dot">•</span> Your Daily Superfruit Wellness Support</span>
+      <span class="marquee-item">GSK DRAGON FRUIT <span class="marquee-dot">•</span> Your Daily Superfruit Wellness Support</span>
+      <span class="marquee-item">GSK DRAGON FRUIT <span class="marquee-dot">•</span> Your Daily Superfruit Wellness Support</span>
+      <span class="marquee-item">GSK DRAGON FRUIT <span class="marquee-dot">•</span> Your Daily Superfruit Wellness Support</span>
+      <span class="marquee-item">GSK DRAGON FRUIT <span class="marquee-dot">•</span> Your Daily Superfruit Wellness Support</span>
+    </div>
+  </div>
 
   <!-- 2. Problem Awareness -->
   <section class="problem">
@@ -145,33 +169,321 @@
         <h2>See GSK Dragon Fruit Plus in Action</h2>
         <p class="section-sub">Maikli lang na video about the product at kung paano makatutulong sa daily wellness routine mo.</p>
       </div>
-      <div class="video-grid">
-        <figure class="video-card">
-          <video
-            class="video-player"
-            controls
-            preload="metadata"
-            playsinline
-            poster="Assets/Video/Gsk-poster.jpg"
-          >
-            <source src="Assets/Video/Gsk-web.mp4" type="video/mp4" />
-            Hindi suportado ng browser mo ang video playback.
-          </video>
-          <figcaption>Product Highlight</figcaption>
-        </figure>
-        <figure class="video-card">
-          <video
-            class="video-player"
-            controls
-            preload="metadata"
-            playsinline
-            poster="Assets/Video/Story-poster.jpg"
-          >
-            <source src="Assets/Video/Story-web.mp4" type="video/mp4" />
-            Hindi suportado ng browser mo ang video playback.
-          </video>
-          <figcaption>Customer Story</figcaption>
-        </figure>
+      <div class="video-carousel" id="videoCarousel">
+        <button type="button" class="vc-arrow vc-prev" aria-label="Previous video">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="vc-track">
+          <figure class="video-card is-active" data-index="0">
+            <div class="video-frame">
+              <video
+                class="video-player"
+                controls
+                preload="metadata"
+                playsinline
+                poster="Assets/Video/Gsk-poster.jpg"
+              >
+                <source src="Assets/Video/Gsk-web.mp4" type="video/mp4" />
+                Hindi suportado ng browser mo ang video playback.
+              </video>
+            </div>
+            <figcaption>Product Highlight</figcaption>
+          </figure>
+          <figure class="video-card" data-index="1">
+            <div class="video-frame">
+              <video
+                class="video-player"
+                controls
+                preload="metadata"
+                playsinline
+                poster="Assets/Video/Story-poster.jpg"
+              >
+                <source src="Assets/Video/Story-web.mp4" type="video/mp4" />
+                Hindi suportado ng browser mo ang video playback.
+              </video>
+            </div>
+            <figcaption>Customer Story</figcaption>
+          </figure>
+        </div>
+        <button type="button" class="vc-arrow vc-next" aria-label="Next video">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="vc-dots" role="tablist" aria-label="Video slides">
+          <button type="button" class="vc-dot is-active" data-index="0" aria-label="Show Product Highlight"></button>
+          <button type="button" class="vc-dot" data-index="1" aria-label="Show Customer Story"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews -->
+  <section class="reviews">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Real Customer Reviews</span>
+        <h2>What Our Customers Are Saying</h2>
+        <p class="section-sub">Mga totoong testimonya mula sa mga customer na tuloy-tuloy nang umiinom ng GSK Dragon Fruit Plus.</p>
+      </div>
+
+      <div class="reviews-grid" id="reviewsGrid" data-visible="6">
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Sobrang okay nito! Mas magaan ang pakiramdam ko pagkagising at hindi na agad napapagod sa work. Tuloy-tuloy na ang order ko dito."</p>
+          <footer class="review-author">
+            <span class="review-avatar" aria-hidden="true">M</span>
+            <span class="review-meta">
+              <span class="review-name">Marites D. <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer · Quezon City</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Naranasan ko talaga yung sinasabi nilang feeling refreshed. Affordable lang pero solid ang quality. Pinaiinom ko rin ngayon sa nanay ko."</p>
+          <footer class="review-author">
+            <span class="review-avatar review-avatar-anon" aria-hidden="true">?</span>
+            <span class="review-meta">
+              <span class="review-name">Anonymous <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Salamat GSK Dragon Fruit Plus! Mas naka-focus ako ngayon sa trabaho. Wala akong problema sa intake — madali lunukin yung capsule, walang masamang aftertaste."</p>
+          <footer class="review-author">
+            <span class="review-avatar" aria-hidden="true">J</span>
+            <span class="review-meta">
+              <span class="review-name">Joselito M. <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer · Cebu City</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Third box ko na ito, repeat order na talaga. Hindi ako mahilig magpost pero gusto kong i-share kasi totoo, gumagana sa pakiramdam ko araw-araw."</p>
+          <footer class="review-author">
+            <span class="review-avatar review-avatar-anon" aria-hidden="true">?</span>
+            <span class="review-meta">
+              <span class="review-name">Anonymous <span class="review-verified" title="Repeat Buyer">✓</span></span>
+              <span class="review-tag">Repeat Buyer</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Bilib talaga ako sa product na 'to. Para sa mga nanay na pagod sa bahay at trabaho, try niyo. Mas may energy ako ngayon para sa mga apo."</p>
+          <footer class="review-author">
+            <span class="review-avatar" aria-hidden="true">N</span>
+            <span class="review-meta">
+              <span class="review-name">Aling Nene R. <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer · Pampanga</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Pinaiinom ko rin sa misis ko at sabay kami. Halata yung pagbabago sa pakiramdam after a few weeks. Worth every peso, hindi mahal."</p>
+          <footer class="review-author">
+            <span class="review-avatar" aria-hidden="true">R</span>
+            <span class="review-meta">
+              <span class="review-name">Renato P. <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer · Davao City</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Mura lang at effective. Nagsimula akong uminom kasi laging puyat ako sa work. After a month, mas okay na ang gising ko at hindi na laging tamad."</p>
+          <footer class="review-author">
+            <span class="review-avatar review-avatar-anon" aria-hidden="true">?</span>
+            <span class="review-meta">
+              <span class="review-name">Anonymous <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Recommend ko 'to sa mga kaibigan ko na 40+ na rin ang edad. Hindi naman raw exaggerated yung tamang dose, at madali lang i-include sa daily routine."</p>
+          <footer class="review-author">
+            <span class="review-avatar" aria-hidden="true">L</span>
+            <span class="review-meta">
+              <span class="review-name">Liza F. <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer · Makati</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Tatay ko ang nag-recommend sakin. Sabi niya pampaganda raw ng pakiramdam pag tumatanda. Nasubukan ko nga, totoo. Salamat St. Vincent GSK!"</p>
+          <footer class="review-author">
+            <span class="review-avatar" aria-hidden="true">A</span>
+            <span class="review-meta">
+              <span class="review-name">Andrei C. <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer · Iloilo</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Maganda yung packaging at madaling itago. Natapos ko na yung tatlong box, repeat order na talaga. Hindi ako nahihirapan ngayon sa daily routine ko."</p>
+          <footer class="review-author">
+            <span class="review-avatar" aria-hidden="true">C</span>
+            <span class="review-meta">
+              <span class="review-name">Carmela B. <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer · Bulacan</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Nag-skeptic ako noong una pero pumayag ako subukan. Hindi pala mahal at gumagana naman. Salamat sa nag-recommend sakin sa Facebook group."</p>
+          <footer class="review-author">
+            <span class="review-avatar review-avatar-anon" aria-hidden="true">?</span>
+            <span class="review-meta">
+              <span class="review-name">Anonymous <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Tricycle driver po ako, halos buong araw nasa kalsada. Mas matiyaga na ako sa byahe ngayon. Salamat sa mga nag-share nito sa social media."</p>
+          <footer class="review-author">
+            <span class="review-avatar" aria-hidden="true">B</span>
+            <span class="review-meta">
+              <span class="review-name">Boyet S. <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer · Laguna</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Sabi ng anak ko 'Ma, try mo na 'to.' Ngayon, pati siya umiinom na rin. Family routine na ito sa amin. Mura pa ang shipping."</p>
+          <footer class="review-author">
+            <span class="review-avatar" aria-hidden="true">S</span>
+            <span class="review-meta">
+              <span class="review-name">Tita Susan T. <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer · Batangas</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Mahilig talaga ako sa dragon fruit kaya nasubukan ko ito. Hindi ako bigo. Mas maganda ang digestion ko ngayon at light ang pakiramdam."</p>
+          <footer class="review-author">
+            <span class="review-avatar review-avatar-anon" aria-hidden="true">?</span>
+            <span class="review-meta">
+              <span class="review-name">Anonymous <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Construction worker ako, parati akong pagod sa site. Nung umiinom na ako nito, mas tibay-tibay yung katawan. Walang side effects sa akin."</p>
+          <footer class="review-author">
+            <span class="review-avatar" aria-hidden="true">M</span>
+            <span class="review-meta">
+              <span class="review-name">Marlon V. <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer · Cavite</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"65 anyos na po ako, inumin ko 'to araw-araw bago mag-almusal. Mas maliksi at hindi laging nahihilo. Salamat sa GSK Dragon Fruit Plus."</p>
+          <footer class="review-author">
+            <span class="review-avatar" aria-hidden="true">T</span>
+            <span class="review-meta">
+              <span class="review-name">Lolo Tasyo M. <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer · Pangasinan</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Nars po ako, sobrang dami ng duty. Kailangan ko ng dagdag suporta sa katawan kaya umiinom ako nito. Tuloy-tuloy ang dating ng order ko."</p>
+          <footer class="review-author">
+            <span class="review-avatar" aria-hidden="true">C</span>
+            <span class="review-meta">
+              <span class="review-name">Cherry Mae L. <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer · Naga, Bicol</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Naniwala ako sa testimonya ng kapitbahay ko. Tama nga siya. Mura at quality. Bibili ulit ako kapag malapit nang maubos yung box."</p>
+          <footer class="review-author">
+            <span class="review-avatar review-avatar-anon" aria-hidden="true">?</span>
+            <span class="review-meta">
+              <span class="review-name">Anonymous <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Office worker, laging puyat sa deadline. After 2 weeks ng intake, mas okay na pakiramdam ko. Hindi na agad ina-antok kahit hapon na."</p>
+          <footer class="review-author">
+            <span class="review-avatar" aria-hidden="true">M</span>
+            <span class="review-meta">
+              <span class="review-name">Mark Anthony G. <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer · Tarlac</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Bilang ina ng tatlo, kailangan ko ng energy buong araw. Nakatulong itong supplement. Affordable, hindi kayang i-skip sa daily ko."</p>
+          <footer class="review-author">
+            <span class="review-avatar" aria-hidden="true">G</span>
+            <span class="review-meta">
+              <span class="review-name">Mama Glo D. <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Verified Buyer · Bacolod</span>
+            </span>
+          </footer>
+        </article>
+
+        <article class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review-text">"Kasama na 'to sa daily multivitamins ko. Mga 6 weeks na ako rito. Walang reklamo, tuloy-tuloy ang tindig ko at clear ang isip buong araw."</p>
+          <footer class="review-author">
+            <span class="review-avatar review-avatar-anon" aria-hidden="true">?</span>
+            <span class="review-meta">
+              <span class="review-name">Anonymous <span class="review-verified" title="Verified Buyer">✓</span></span>
+              <span class="review-tag">Repeat Buyer</span>
+            </span>
+          </footer>
+        </article>
+      </div>
+
+      <div class="reviews-cta">
+        <button type="button" class="btn btn-outline reviews-toggle" id="reviewsToggle" aria-expanded="false" aria-controls="reviewsGrid">
+          <span class="reviews-toggle-text">See more reviews</span>
+          <svg class="reviews-toggle-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </div>
     </div>
   </section>
@@ -252,7 +564,6 @@
             <li>GCash</li>
             <li>Credit Card</li>
           </ul>
-          <p class="campaign-note">Campaign: May 11 – June 9, 2026</p>
         </div>
       </div>
 

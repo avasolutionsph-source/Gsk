@@ -187,7 +187,7 @@ p  { margin: 0 0 1em; }
 /* ---------- Header ---------- */
 .site-header {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: var(--header-top, 0); left: 0; right: 0;
   z-index: 50;
   background: transparent;
   backdrop-filter: none;
@@ -846,29 +846,110 @@ p  { margin: 0 0 1em; }
 .ben-wide h3 { margin: 0 0 4px; }
 .ben-wide p { margin: 0; }
 
+/* ---------- Marquee strip ---------- */
+.marquee {
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+.marquee-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 36px;
+  padding: 10px 0;
+  white-space: nowrap;
+  animation: marquee-scroll 28s linear infinite;
+  will-change: transform;
+}
+.marquee-item {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 36px;
+}
+.marquee-dot {
+  color: var(--gold-500);
+  font-size: 0.9rem;
+  line-height: 1;
+}
+.marquee.marquee-reverse .marquee-track {
+  animation-name: marquee-scroll-reverse;
+}
+@keyframes marquee-scroll {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+@keyframes marquee-scroll-reverse {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation-duration: 90s; }
+}
+
 /* ---------- Featured Videos ---------- */
 .featured-videos {
   padding: 90px 0;
   background: linear-gradient(180deg, var(--white), var(--beige-100));
 }
-.video-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
-  align-items: start;
+.video-carousel {
+  position: relative;
+  margin: 0 auto;
+  max-width: 980px;
+  padding: 0 56px;
+}
+.vc-track {
+  position: relative;
+  height: clamp(440px, 64vw, 620px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1400px;
 }
 .video-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   margin: 0;
+  width: clamp(240px, 34vw, 340px);
   background: var(--white);
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md);
   border: 1px solid var(--beige-300);
-  transition: transform .25s ease, box-shadow .25s ease;
+  transform: translate(-50%, -50%) scale(0.78);
+  opacity: 0.55;
+  filter: saturate(0.85);
+  transition: transform .45s cubic-bezier(.2,.7,.2,1), opacity .35s ease, box-shadow .35s ease, filter .35s ease;
+  cursor: pointer;
+  z-index: 1;
 }
-.video-card:hover {
-  transform: translateY(-4px);
+.video-card.is-active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  filter: none;
   box-shadow: var(--shadow-lg);
+  cursor: default;
+  z-index: 3;
+}
+.video-card.is-prev {
+  transform: translate(calc(-50% - 58%), -50%) scale(0.82) rotateY(8deg);
+  z-index: 2;
+}
+.video-card.is-next {
+  transform: translate(calc(-50% + 58%), -50%) scale(0.82) rotateY(-8deg);
+  z-index: 2;
+}
+.video-frame {
+  position: relative;
+  background: var(--wine-900);
 }
 .video-player {
   display: block;
@@ -877,7 +958,9 @@ p  { margin: 0 0 1em; }
   aspect-ratio: 9 / 16;
   background: var(--wine-900);
   object-fit: cover;
+  pointer-events: none;
 }
+.video-card.is-active .video-player { pointer-events: auto; }
 .video-card figcaption {
   padding: 14px 18px;
   font-size: 0.95rem;
@@ -888,9 +971,182 @@ p  { margin: 0 0 1em; }
   background: var(--white);
 }
 
+/* Arrow buttons */
+.vc-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--beige-300);
+  background: var(--white);
+  color: var(--wine-700);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+  z-index: 5;
+}
+.vc-arrow:hover { background: var(--wine-700); color: var(--white); transform: translateY(-50%) scale(1.05); }
+.vc-arrow svg { width: 22px; height: 22px; }
+.vc-prev { left: 8px; }
+.vc-next { right: 8px; }
+
+/* Dots */
+.vc-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+.vc-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: var(--beige-300);
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease, width .2s ease;
+}
+.vc-dot.is-active { background: var(--wine-700); width: 26px; border-radius: 999px; }
+
 @media (max-width: 980px) {
   .featured-videos { padding: 56px 0; }
-  .video-grid { grid-template-columns: 1fr; gap: 20px; max-width: 480px; margin: 0 auto; }
+  .video-carousel { padding: 0 44px; max-width: 100%; }
+  .vc-track { height: clamp(420px, 110vw, 560px); }
+  .video-card { width: clamp(220px, 60vw, 300px); }
+  .video-card.is-prev { transform: translate(calc(-50% - 52%), -50%) scale(0.78) rotateY(8deg); }
+  .video-card.is-next { transform: translate(calc(-50% + 52%), -50%) scale(0.78) rotateY(-8deg); }
+}
+@media (max-width: 560px) {
+  .video-carousel { padding: 0 16px; }
+  .vc-arrow { width: 40px; height: 40px; }
+  .vc-prev { left: -2px; }
+  .vc-next { right: -2px; }
+}
+
+/* ---------- Reviews ---------- */
+.reviews {
+  padding: 90px 0;
+  background: var(--beige-100);
+}
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 12px;
+}
+.review-card {
+  background: var(--white);
+  border: 1px solid var(--beige-300);
+  border-radius: var(--radius-lg);
+  padding: 26px 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.review-stars {
+  color: var(--gold-500);
+  font-size: 1.05rem;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+.review-text {
+  margin: 0;
+  color: var(--ink-700);
+  font-size: 0.97rem;
+  line-height: 1.6;
+}
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--beige-200);
+}
+.review-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--wine-700);
+  color: var(--white);
+  display: inline-grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 1rem;
+  flex: 0 0 auto;
+}
+.review-avatar-anon { background: var(--ink-300); }
+.review-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.review-name {
+  font-weight: 700;
+  color: var(--ink-900);
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.review-verified {
+  display: inline-grid;
+  place-items: center;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: #1d9bf0;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+.review-tag {
+  font-size: 0.78rem;
+  color: var(--ink-500);
+  letter-spacing: 0.02em;
+}
+
+/* Hide cards beyond the visible count when collapsed */
+.reviews-grid:not(.is-expanded) .review-card.is-hidden { display: none; }
+
+.reviews-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+.reviews-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.reviews-toggle-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform .25s ease;
+}
+.reviews-toggle[aria-expanded="true"] .reviews-toggle-icon {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 980px) {
+  .reviews { padding: 56px 0; }
+  .reviews-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+@media (max-width: 620px) {
+  .reviews-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .review-card { padding: 22px 20px; }
 }
 
 /* ---------- Pricing ---------- */
@@ -1530,18 +1786,6 @@ blockquote {
 .final-bullets li {
   font-weight: 600; color: var(--ink-700); font-size: 1rem;
 }
-.campaign-note {
-  display: inline-block;
-  background: var(--white);
-  padding: 10px 18px;
-  border-radius: var(--radius-pill);
-  font-weight: 700;
-  font-size: 0.92rem;
-  color: var(--wine-700);
-  border: 1px solid var(--wine-100);
-  box-shadow: var(--shadow-sm);
-}
-
 .order-form {
   background: var(--white);
   border-radius: var(--radius-lg);
@@ -1697,13 +1941,6 @@ blockquote {
   font-weight: 600;
   margin-right: 6px;
 }
-.footer-payments .campaign-note {
-  margin-top: 16px;
-  background: rgba(232, 197, 71, 0.12);
-  color: var(--gold-500);
-  border-color: rgba(232, 197, 71, 0.25);
-}
-
 .no-claims-strip {
   margin-top: 24px;
   padding: 14px 18px;
